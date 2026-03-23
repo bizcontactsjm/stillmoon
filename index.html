@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>stillmoon — 문소정</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f4f6fa;
+      --white: #ffffff;
+      --ink: #0d0f14;
+      --sub: #2e3340;
+      --muted: #8a93a8;
+      --border: #dce1ed;
+      --accent: #2a5bd7;
+      --accent-light: #e8eef9;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 48px 24px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 56px 40px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      border: 1.5px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+
+    .avatar-initials {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+
+    .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .name-ko {
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .divider {
+      width: 32px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 28px;
+    }
+
+    .bio {
+      font-size: 13.5px;
+      line-height: 1.9;
+      color: var(--sub);
+      text-align: center;
+      letter-spacing: 0.03em;
+      margin-bottom: 24px;
+      max-width: 280px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 7px;
+      margin-bottom: 32px;
+    }
+
+    .tag {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: var(--accent-light);
+      border: 1px solid #c2d0f0;
+      padding: 5px 12px;
+    }
+
+    .inquiry {
+      width: 100%;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      margin-bottom: 28px;
+    }
+
+    .inquiry-title {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .inquiry-steps {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .step-label {
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: var(--sub);
+      text-align: center;
+    }
+
+    .step-arrow {
+      font-size: 11px;
+      color: var(--border);
+      margin-bottom: 14px;
+    }
+
+    .inquiry-note {
+      font-size: 11.5px;
+      color: var(--muted);
+      text-align: center;
+      letter-spacing: 0.02em;
+      line-height: 1.8;
+    }
+
+    .links {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 16px 22px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--ink);
+      text-decoration: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: color 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .link-btn:hover::before { transform: scaleX(1); }
+    .link-btn:hover { color: var(--white); border-color: var(--accent); }
+
+    .link-btn span, .link-btn .icon {
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-label-en {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+
+    .btn-label-ko {
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    .btn-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .icon {
+      font-size: 14px;
+      opacity: 0.4;
+      transition: opacity 0.25s;
+      position: relative;
+      z-index: 1;
+    }
+    .link-btn:hover .icon { opacity: 1; }
+    .link-btn:hover .btn-label-en { opacity: 0.7; }
+
+    .link-btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--white);
+    }
+    .link-btn.primary .btn-label-en { opacity: 0.7; }
+    .link-btn.primary .icon { opacity: 0.7; }
+    .link-btn.primary::before { background: var(--ink); }
+    .link-btn.primary:hover { border-color: var(--ink); }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--border);
+      text-transform: uppercase;
+    }
+
+    .link-btn:nth-child(1) { opacity: 0; animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.50s forwards; }
+    .link-btn:nth-child(2) { opacity: 0; animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.63s forwards; }
+    .link-btn:nth-child(3) { opacity: 0; animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.76s forwards; }
+    .link-btn:nth-child(4) { opacity: 0; animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.89s forwards; }
+    .link-btn:nth-child(5) { opacity: 0; animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 1.02s forwards; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="avatar">
+      <span class="avatar-initials">M</span>
+    </div>
+
+    <h1 class="name">stillmoon</h1>
+    <p class="name-ko">문소정</p>
+
+    <div class="divider"></div>
+
+    <p class="bio">
+      영상편집자 · Video Editor<br>
+      잔잔하지만 선명하게,<br>
+      당신의 이야기를 편집합니다
+    </p>
+
+    <div class="tags">
+      <span class="tag">유튜브 편집</span>
+      <span class="tag">브이로그</span>
+      <span class="tag">숏폼</span>
+      <span class="tag">웨딩</span>
+      <span class="tag">인터뷰</span>
+    </div>
+
+    <div class="inquiry">
+      <p class="inquiry-title">의뢰 프로세스</p>
+      <div class="inquiry-steps">
+        <div class="step">
+          <span class="step-num">01</span>
+          <span class="step-label">문의</span>
+        </div>
+        <span class="step-arrow">→</span>
+        <div class="step">
+          <span class="step-num">02</span>
+          <span class="step-label">견적 협의</span>
+        </div>
+        <span class="step-arrow">→</span>
+        <div class="step">
+          <span class="step-num">03</span>
+          <span class="step-label">작업 시작</span>
+        </div>
+        <span class="step-arrow">→</span>
+        <div class="step">
+          <span class="step-num">04</span>
+          <span class="step-label">납품</span>
+        </div>
+      </div>
+      <p class="inquiry-note">단가는 영상 길이 · 난이도에 따라 협의 후 결정됩니다<br>카카오톡으로 편하게 문의해 주세요 :)</p>
+    </div>
+
+    <div class="links">
+      <a class="link-btn" href="about.html">
+        <div class="btn-left">
+          <span class="btn-label-en">About</span>
+          <span class="btn-label-ko">소개</span>
+        </div>
+        <span class="icon">→</span>
+      </a>
+      <a class="link-btn" href="https://www.youtube.com/@stillmoon-biz" target="_blank" rel="noopener">
+        <div class="btn-left">
+          <span class="btn-label-en">Portfolio</span>
+          <span class="btn-label-ko">포트폴리오</span>
+        </div>
+        <span class="icon">↗</span>
+      </a>
+      <a class="link-btn primary" href="order.html">
+        <div class="btn-left">
+          <span class="btn-label-en">Request</span>
+          <span class="btn-label-ko">의뢰하기</span>
+        </div>
+        <span class="icon">→</span>
+      </a>
+      <a class="link-btn" href="mailto:bizcontact.sjm@gmail.com">
+        <div class="btn-left">
+          <span class="btn-label-en">Contact · Email</span>
+          <span class="btn-label-ko">이메일 문의</span>
+        </div>
+        <span class="icon">→</span>
+      </a>
+      <a class="link-btn" href="https://open.kakao.com/o/sdOP0Pmi" target="_blank" rel="noopener">
+        <div class="btn-left">
+          <span class="btn-label-en">Contact · KakaoTalk</span>
+          <span class="btn-label-ko">카카오톡 문의</span>
+        </div>
+        <span class="icon">→</span>
+      </a>
+    </div>
+  </div>
+
+  <p class="footer">stillmoon</p>
+</body>
+</html>
